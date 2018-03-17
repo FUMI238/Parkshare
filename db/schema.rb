@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180317070633) do
+ActiveRecord::Schema.define(version: 20180317073802) do
+
+  create_table "parks", force: :cascade do |t|
+    t.string   "location",   limit: 255
+    t.text     "comment",    limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
