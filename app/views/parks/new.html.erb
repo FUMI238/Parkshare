@@ -1,0 +1,8 @@
+  <%= form_tag('/parks', method: :post) do %>
+    <h3>
+      投稿する
+    </h3>
+    <input placeholder="特徴" type="text" name="comment">
+    <input placeholder="住所" type="string" name="location">
+    <input type="submit" value="SENT">
+  <% end %>

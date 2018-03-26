@@ -1,17 +1,38 @@
-<div class="container">
+<!-- <div class="container"> -->
+  <%= search_form_for @search do |f| %>
+  <div class="form-group">
+    <%= f.label :comment_or_location_cont, "キーワード/住所等" %>
+    <%= f.text_field :comment_or_location_cont, class: "form-control" %>
+  </div>
+  <div class="actions"><%= f.submit "検索" %></div>
+<% end %>
+
+<tbody>
 <% @parks.each do |park| %>
   <div class="card">
   <div class="card-image waves-effect waves-block waves-light">
     <img class="activator" src="images/sample-1.jpg">
   </div>
       <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4"><%= park.comment %><i class="material-icons right"><%= park.location %></i></span>
-        <p><a href="#">This is a link</a></p>
+        <span class="card-title activator grey-text text-darken-4"><%= park.comment %><i class="material-icons right">詳細(住所等)</i></span>
+        <ul>
+          <li><span>投稿者: </span><%= park.user.nickname %></li>
+          <li><%= link_to "詳細", "/parks/#{park.id}", method: :get %>
+          </li>
+          <% if user_signed_in? && current_user.id == park.user_id %>
+          <li><%= link_to "削除", "/parks/#{park.id}", method: :delete %>
+          </li>
+          <li><%= link_to "編集", "/parks/#{park.id}/edit", method: :get %>
+          </li>
+          <%end%>
+        </ul>
       </div>
       <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-        <p>Here is some more information about this product that is only revealed once clicked on.</p>
+        <span class="card-title grey-text text-darken-4"><% park.comment %><i class="material-icons right">閉じる</i></span>
+        <p>住所：<%= park.location %></p>
       </div>
   </div>
   <% end %>
-</div>
+</tbody>
+</table>
+<!-- </div> -->

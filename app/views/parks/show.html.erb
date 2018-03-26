@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-image waves-effect waves-block waves-light">
+    <img class="activator" src="images/sample-1.jpg">
+  </div>
+  <div class="card-content">
+    <span class="card-title activator grey-text text-darken-4"><%= @park.comment %><i class="material-icons right">住所:<%= @park.location %></i></span>
+    <ul>
+      <li><span>投稿者: </span><%= @park.user.nickname %></li>
+      <% if user_signed_in? && current_user.id == @park.user_id %>
+        <li><%= link_to "削除", "/parks/#{@park.id}", method: :delete %></li>
+        <li><%= link_to "編集", "/parks/#{@park.id}/edit", method: :get %></li>
+      <%end%>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+ <%= form_tag("/parks/#{@park.id}", method: :patch) do %>
+    <h3>
+      編集する
+    </h3>
+    <input placeholder="特徴" type="text" name="comment">
+    <input placeholder="住所" type="string" name="location">
+    <input type="submit" value="SENT">
+  <% end %>
